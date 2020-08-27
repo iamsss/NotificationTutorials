@@ -10,6 +10,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<InstanceIdResult> task) {
                 if(task.isSuccessful()){
                     String token = task.getResult().getToken();
+                    Log.d("Token",token);
                     textViewFCM.setText(token);
                 }else{
                     Toast.makeText(MainActivity.this,"Something went wrong",Toast.LENGTH_SHORT).show();

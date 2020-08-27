@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,6 +66,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        final String topic = "7634994321";
+        FirebaseMessaging.getInstance().subscribeToTopic(topic)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (!task.isSuccessful()) {
+                            Log.d("MyTopic","Not Successful topic Subscribed "+topic);
+                        }else {
+
+                            Log.d("MyTopic","Successful topic Subscribed " +topic);
+                        }
+                    }
+                });
     }
 
     private void DisplayNotification(){
